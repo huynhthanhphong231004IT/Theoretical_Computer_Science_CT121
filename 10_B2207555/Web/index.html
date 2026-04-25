@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trang Chủ - Hệ Thống Tự Học</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family:'Roboto',sans-serif;
+      margin:0;
+      padding:0;
+      background: #eef6ff;
+    }
+    header{
+      background:#1766a6;
+      color:white;
+      padding:20px;
+      text-align:center;
+      font-size:24px;
+      font-weight:500;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      font-family: "K2D";
+    }
+    main{
+      display:grid;
+      grid-template-columns: repeat(3, 260px);
+      justify-content:center;
+      row-gap:20px;
+      column-gap:20px;
+      padding:20px;
+    }
+    .card{
+      background:white;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.12);
+      padding:20px;
+      text-align:center;
+      cursor:pointer;
+      transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow:0 12px 24px rgba(0,0,0,0.2);
+    }
+    .card h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#1766a6;
+    }
+    .card p{
+      font-size:14px;
+      color:#555;
+      margin-bottom:15px;
+    }
+    .card a{
+      text-decoration:none;
+      display:inline-block;
+      padding:8px 16px;
+      background:#1766a6;
+      color:white;
+      border-radius:6px;
+      font-size:14px;
+      transition:background 0.2s;
+    }
+    .card a:hover{
+      background:#145a86;
+    }
+    footer{
+      text-align:center;
+      font-family: "K2D";
+      font-size:15px;
+      color:#555;
+      background:#f0f0f0;
+      margin-top:20px;
+    }
+    @media(max-width:900px){
+      main{
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media(max-width:600px){
+      main{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .row2{
+      display:grid;
+      grid-template-columns: repeat(3, 260px);
+      justify-content:center;
+      column-gap:20px;
+    }
+    .row2 .empty{
+      visibility:hidden;
+    }
+    
+  footer {
+    background-color: #145a86;
+    color: #ecf0f1;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 20px 0;
+    position: relative;
+  }
+
+  footer span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  body::before {
+      content: "CTU";
+      position: fixed;     
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: 550px;     
+      color: rgba(0,0,0,0.05);
+      font-weight: bold;
+      z-index: 0;           
+      pointer-events: none; 
+  }
+  header, main, footer {
+      position: relative;
+      z-index: 1;
+  }
+    
+  </style>
+</head>
+<body>
+  <header>
+    WEBSITE HỖ TRỢ HỌC TẬP MÔN TIN HỌC LÝ THUYẾT 
+  </header>
+  <main>
+    <div class="card">
+      <h2>DFA - Deterministic Finite Automata</h2>
+      <p>Xác định tính chấp nhận của một chuỗi đầu vào đối với một máy tự động hữu hạn đơn định (DFA) đã cho</p>
+      <a href="./DFA.html">Bắt đầu</a>
+    </div>
+    <div class="card">
+      <h2>NFA - Nondeterministic Finite Automato</h2>
+      <p>Xác định tính chấp nhận của một chuỗi đầu vào đối với một máy tự động hữu hạn không đơn định (NFA) đã cho</p>
+      <a href="./NFA.html" target="_blank">Bắt đầu</a>
+    </div>
+    <div class="card">
+      <h2>NFA with ε-transitions</h2>
+      <p>Một NFAε cho phép, ngoài các chuyển tiếp dựa trên ký tự trong bảng chữ cái, di chuyển “miễn phí” giữa các trạng thái mà không tiêu thụ ký tự nào.</p>
+      <a href="./NFAe.html" target="_blank">Bắt đầu</a>
+    </div>
+    <div class="card">
+      <h2>NFA → DFA</h2>
+      <p>Thực hiển phép chuyển đổi NFA sang DFA.</p>
+      <a href="./NFADFA.html" target="_blank">Bắt đầu</a>
+    </div>
+    <div class="card">
+      <h2>NFAe → NFA / DFA</h2>
+      <p>Thực hành chuyển đổi từ NFA có ε sang NFA hoặc DFA.</p>
+      <a href="./NFAeNFADFA.html">Bắt đầu</a>
+    </div>
+    <div class="card">
+      <h2>Lý thuyết</h2>
+      <p>Chứa các video hướng dẫn, bài tập các chương và code thực hành.</p>
+      <a href="./LyThuyet.html" target="_blank">Bắt đầu</a>
+    </div>
+  </main>
+<footer>
+  <div class="footer-left">Trường công nghệ thông tin và truyền thông - Đại học Cần Thơ</div>
+  <div class="footer-right">Hệ thống hỗ trợ học tập trực tuyến</div>
+</footer>
+</body>
+</html>

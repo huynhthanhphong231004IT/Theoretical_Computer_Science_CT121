@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>DFA Visualizer — Kiểm tra chuỗi (LaTeX)</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="./DFA.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[','\\]'], ['$$','$$']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+ <link rel="stylesheet" href="Homebtn.css">
+
+  <style>
+    :root{
+      --bg:#eef6ff;
+      --card:#ffffff;
+      --accent:#1766a6;
+      --accent-2:#27a2f0;
+      --muted:#5b6b7a;
+      --success:#1f8a49;
+      --danger:#d23f3f;
+    }
+    *{box-sizing:border-box;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+    html,body,#app{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#f7fbff)}
+    #app{display:flex;gap:18px;padding:18px;align-items:stretch}
+    .main{
+      flex:1.3; background:var(--card); border-radius:12px; padding:12px;
+      box-shadow:0 6px 18px rgba(39,162,240,0.06);
+      display:flex; flex-direction:column; min-height:0;
+    }
+    #network{flex:1;border-radius:8px;border:1px solid #eef6ff;margin-top:8px;min-height:420px}
+    .side{
+      flex:0.8; background:var(--card); border-radius:12px; padding:18px;
+      box-shadow:0 6px 18px rgba(23,102,166,0.08);
+      display:flex;flex-direction:column;justify-content:space-between;
+    }
+    h1{margin:0;font-size:25px;color:var(--accent)}
+    label{font-size:13px;color:var(--muted);display:block;margin-top:12px}
+    input[type="file"]{display:block;margin-top:8px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:white;border:0;cursor:pointer;
+      font-weight:600;box-shadow:0 6px 14px rgba(23,102,166,0.18);
+    }
+    .btn.secondary{background:#f4f8ff;color:var(--accent);box-shadow:none;border:1px solid #e6f0fb}
+    .controls{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    textarea{
+      width:100%;min-height:150px;max-height:280px;
+      border-radius:8px;padding:10px;border:1px solid #e9f0f8;
+      background:#fbfdff;resize:vertical;overflow:auto;
+    }
+    #inputString{
+      width:100%;padding:10px;border-radius:8px;
+      border:1px solid #e9f0f8;margin-top:6px;
+    }
+    .status{
+      padding:10px;border-radius:8px;margin-top:12px;font-weight:700;text-align:center;
+      transition:all 0.3s ease;
+    }
+    .status.ok{
+      background:#ecfff0;color:var(--success);
+      border:1px solid rgba(31,138,73,0.12);
+      box-shadow:0 0 8px rgba(31,138,73,0.12);
+    }
+    .status.bad{
+      background:#fff0f0;color:var(--danger);
+      border:1px solid rgba(210,63,63,0.12);
+      box-shadow:0 0 8px rgba(210,63,63,0.12);
+    }
+    .details-box{
+      margin-top:12px;
+      border-radius:8px;
+      background:#ffffff;
+      border:1px solid #e9f0f8;
+      padding:12px;
+      overflow:auto;
+      font-size:15px;
+      line-height:1.45;
+    }
+    .details-box ol { padding-left:20px; margin:0; }
+    .details-box li { margin:6px 0; }
+    .delta-table th, .delta-table td {
+      border:1px solid #e6f0fb;
+      padding:8px;
+      font-size:13px;
+    }
+    .delta-table thead th { color:#0b5c87; font-weight:700; background:#fbfdff; }
+    .header{
+      background:#cde9ff;
+      color:rgb(0, 0, 0);
+      padding:20px;
+      text-align:center;
+      font-size:24px;
+      font-weight:500;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      font-family: "K2D";
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <a href="index.html" class="btn-home">Home</a>
+    <div class="main">
+      <div class="header" style="height: 100px;" style="display:flex;align-items:center;gap:12px;padding:8px">
+        <div style="flex:1">
+          <div style="font-weight:700;color:#0b5c87">Đồ thị DFA</div>
+          <div class="small">Trạng thái bắt đầu: <span style="color:green;font-weight:600">xanh lá</span> • Trạng thái chấp nhận: <span style="color:red;font-weight:600">đỏ</span></div>
+        </div>
+      </div>
+      <div id="network"></div>
+    </div>
+    <div class="side">
+      <div>
+        <div class="header" style="height: 100px;">
+          <h1>GIẢI THUẬT KIỂM TRA DFA - Deterministic Finite Automata</h1>
+        </div>
+        <div class="small">Tải file mô tả DFA (.txt) theo định dạng mẫu.</div>
+
+        <label>Chọn file .txt</label>
+        <input id="fileInput" type="file" accept=".txt" />
+
+        <label>Nội dung file</label>
+        <textarea id="fileContent" style="height: 230px;" readonly placeholder="Nội dung file sẽ hiển thị ở đây"></textarea>
+
+        <label>Nhập chuỗi cần kiểm tra</label>
+        <input id="inputString" placeholder="ví dụ: 00101" />
+
+        <div class="controls">
+          <button id="checkBtn" class="btn">Kiểm tra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="grap">
+    <div id="details" class="details-box" aria-live="polite"></div>
+    <div id="result" class="status"></div>
+  </div>
+  </body>
+<style>
+  #grap {
+  display: none;
+  margin: 20px;
+  }
+
+.main {
+  position: relative;
+  overflow: hidden;
+}
+
+.main::before {
+  content: "CTU";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-size: 300px; 
+  color: rgba(0, 0, 0, 0.05);
+  font-weight: 900;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main > * {
+  position: relative;
+  z-index: 1; 
+}
+
+</style>
+  <div id="grap">
+    <div id="details" class="details-box" aria-live="polite"></div>
+    <div id="result" class="status"></div>
+  </div>
+
+  <script>
+    document.getElementById("checkBtn").addEventListener("click", function() {
+      document.getElementById("grap").style.display = "block";
+    });
+  </script>
+
+</html>

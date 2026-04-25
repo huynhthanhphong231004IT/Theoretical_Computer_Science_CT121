@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>NFA sang DFA Visualizer</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[','\\]'], ['$$','$$']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #eef6ff;
+      color: #333;
+    }
+
+    #header {
+      background: #1766a6;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    #header h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    #app {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 15px;
+      justify-content: center;
+    }
+
+    .card, .card_1 {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      flex: 1 1 400px;
+      min-width: 400px;
+      position: relative;
+      height: 400px;
+    }
+
+    .card::before {
+      content: "CTU";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: 150px;
+      color: rgba(0,0,0,0.05);
+      font-weight: 900;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card > *, .card_1 > * { position: relative; z-index: 1; }
+
+    h2 {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #1766a6;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    input[type=text], input[type=file], textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      background: linear-gradient(90deg,#1766a6,#27a2f0);
+      color: white;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      box-shadow: 0 6px 14px rgba(23,102,166,0.3);
+    }
+
+    #networkNFA, #networkDFA {
+      height: 340px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .details {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px;
+      background: #f7f9fc;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    #grap {
+      display: none;
+      margin: 20px;
+    }
+
+    ol li { margin-bottom: 4px; }
+    footer {
+      background-color: #145a86;
+      color: #ecf0f1;
+      padding: 15px 20px;
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center; 
+    }
+  </style>
+  <link rel="stylesheet" href="Homebtn.css">
+</head>
+<body>
+  <a href="index.html" class="btn-home">Home</a>
+  <div id="header">
+    <h1>GIẢI THUẬT CHUYỂN ĐỔI TỪ NFA SANG DFA</h1>
+  </div>
+
+  <div id="app">
+    <div class="card_1">
+      <h2>Tải file NFA</h2>
+      <label>Chọn file .txt</label>
+      <input style="width: 390px;"  id="fileInput" type="file" accept=".txt" />
+      <label>Nội dung file</label>
+      <textarea  style="height: 200px; width: 390px;" id="fileContent" readonly placeholder="Nội dung file sẽ hiển thị ở đây"></textarea>
+      <div style="text-align:center; margin-top:10px;">
+        <button id="startBtn">Chuyển đổi NFA sang DFA</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Đồ thị NFA</h2>
+      <div id="networkNFA"></div>
+    </div>
+    <div class="card">
+      <h2>Đồ thị DFA</h2>
+      <div id="networkDFA"></div>
+    </div>
+  </div>
+  <div id="grap">
+    <h2>Bảng chuyển đổi DFA</h2>
+    <div id="dfaTable"></div>
+
+    <h2>Chi tiết các bước</h2>
+    <div id="dfaDetails" class="details"></div>
+  </div>
+  <footer>
+    <div class="footer-content">
+      Trường Công nghệ thông tin và Truyền thông - Đại học Cần Thơ | Hệ thống hỗ trợ học tập trực tuyến
+    </div>
+  </footer>
+  <script src="./NFAtoDFA.js"></script>
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function() {
+      document.getElementById("grap").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

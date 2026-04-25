@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>NFAe → NFA / DFA Visualizer</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body{
+      font-family:'Roboto',sans-serif;
+      margin:0;
+      padding:0;
+      background:#eef6ff;
+      color:#333;
+    }
+
+    #header {
+      background: #1766a6;          
+      color: white;                  
+      text-align: center;            
+      padding: 20px 10px;            
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    }
+
+    #header h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+    #app{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      padding:15px;
+      justify-content:center;
+    }
+
+    .card{
+      background:white;
+      border-radius:12px;
+      padding:15px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.12);
+      flex:1 1 400px;
+      min-width:380px;
+      max-width:700px;
+      height: 430px;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      box-shadow:0 12px 24px rgba(0,0,0,0.18);
+      transform: translateY(-2px);
+    }
+
+    h1{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#1766a6;
+      text-align:center;
+    }
+
+    label{
+      display:block;
+      margin:6px 0 2px;
+      color:#555;
+      font-size:14px;
+    }
+
+    input,textarea,select{
+      width:100%;
+      padding:8px;
+      border-radius:6px;
+      border:1px solid #ccc;
+      margin-bottom:10px;
+      font-size:14px;
+    }
+
+    button{
+      padding:10px 16px;
+      border-radius:6px;
+      border:none;
+      background: linear-gradient(90deg,#1766a6,#27a2f0);
+      color:white;
+      margin-top:6px;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:500;
+      transition:0.3s;
+      width:100%;
+    }
+
+    button:hover{
+      box-shadow:0 6px 14px rgba(23,102,166,0.4);
+      transform: translateY(-2px);
+    }
+
+    #networkNFAe,#networkNFA,#networkDFA{
+      height:320px;
+      border: 1px solid #ccc;
+      border-radius:8px;
+      margin-bottom:10px;
+      background:#f9fbff;
+      height: 390px;
+    }
+
+    .details{
+      height: 370px;
+      overflow:auto;
+      border:1px solid #ccc;
+      border-radius:6px;
+      padding:8px;
+      font-size:13px;
+      background:#f7f9fc;
+      margin-bottom:10px;
+    }
+
+    table{
+      border-collapse:collapse;
+      width:100%;
+      margin-top:6px;
+      font-size:13px;
+    }
+
+    th,td{
+      border:1px solid #ddd;
+      padding:6px;
+      text-align:center;
+    }
+
+    th{
+      background:#f0f0f0;
+    }
+
+    /* Ban đầu ẩn NFA và DFA */
+    #nfaCard, #nfaDetailsCard, #dfaCard, #dfaDetailsCard {
+      display:none;
+    }
+
+    @media(max-width:768px){
+      #app{
+        flex-direction:column;
+        align-items:center;
+      }
+      .card{
+        max-width:90%;
+      }
+    }
+    #nfaeDetailsCard {
+      display: none;
+    }
+    footer {
+      background-color: #145a86;
+      color: #ecf0f1;
+      padding: 15px 20px;
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center; 
+    }
+    body::before {
+      content: "CTU";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: 350px;
+      color: rgba(0,0,0,0.05);
+      font-weight: 900;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+
+  </style>
+  <link rel="stylesheet" href="Homebtn.css">
+</head>
+<body>
+  <a href="index.html" class="btn-home">Home</a>
+  <div id="header">
+    <h2>GIẢI THUẬT CHUYỂN ĐỔI TỪ NFAe SANG NFA/DFA</h2>
+  </div>
+
+  <div id="app">
+    <!-- Input Card -->
+    <div class="card" id="inputCard">
+      <h1>1. Tải NFAe (.txt)</h1>
+      <label>File NFAe:</label>
+      <input type="file" id="fileInput" accept=".txt">
+      <label>Nội dung file:</label>
+      <textarea style="height: 150px;"  id="fileContent" readonly></textarea>
+      <label>Chọn loại chuyển đổi:</label>
+      <select id="convertOption">
+        <option value="NFA">NFA</option>
+        <option value="DFA">DFA</option>
+      </select>
+      <button id="startBtn">Chuyển & Hiển thị chi tiết</button>
+    </div>
+
+    <div class="card" id="nfaeCard">
+      <h1>Đồ thị NFAe (có epsilon dịch chuyển)</h1>
+      <div id="networkNFAe"></div>
+    </div>
+
+    <div class="card" id="nfaeDetailsCard">
+      <h1>Chi tiết NFAe</h1>
+      <div id="nfaeDetails" class="details"></div>
+    </div>
+
+    <div class="card" id="nfaCard">
+      <h1>Đồ thị NFA (loại bỏ ε)</h1>
+      <div id="networkNFA"></div>
+    </div>
+    <div class="card" id="nfaDetailsCard">
+      <h1>Chi tiết NFA</h1>
+      <div id="nfaDetails" class="details"></div>
+    </div>
+    <div class="card" id="dfaCard">
+      <h1>Đồ thị DFA</h1>
+      <div id="networkDFA"></div>
+    </div>
+
+    <div class="card" id="dfaDetailsCard">
+      <h1>Chi tiết DFA</h1>
+      <div id="dfaDetails" class="details"></div>
+
+    </div>
+  </div>
+<footer>
+  <div class="footer-content">
+    Trường Công nghệ thông tin và Truyền thông - Đại học Cần Thơ | Hệ thống hỗ trợ học tập trực tuyến
+  </div>
+</footer>
+  <script src="./NFAe_to_DFA.js"></script>
+
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function() {
+      const option = document.getElementById("convertOption").value;
+      document.getElementById("nfaeDetailsCard").style.display = "block";
+      document.getElementById("nfaCard").style.display = "none";
+      document.getElementById("nfaDetailsCard").style.display = "none";
+      document.getElementById("dfaCard").style.display = "none";
+      document.getElementById("dfaDetailsCard").style.display = "none";
+      document.getElementById("nfaeDetailsCard").style.display = "block";
+
+      if(option==="NFA"){
+        document.getElementById("nfaCard").style.display = "block";
+        document.getElementById("nfaDetailsCard").style.display = "block";
+      } else if(option==="DFA"){
+        document.getElementById("dfaCard").style.display = "block";
+        document.getElementById("dfaDetailsCard").style.display = "block";
+      }
+    });
+
+  </script>
+
+</body>
+</html>

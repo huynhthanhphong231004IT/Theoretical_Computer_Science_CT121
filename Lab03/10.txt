@@ -1,0 +1,20 @@
+thời tiết hôm nay rất đẹp và dễ chịu
+hoa hồng rực rỡ trong vườn
+trời đang có mưa nhỏ
+hôm nay bạn đi đâu?!
+dòng này không có dấu chấm hoặc dấu phẩy
+con chuột đang chạy trong nhà
+tôi thích ăn cà chua và rau xanh
+aaaaab
+bbb
+đây là một đoạn văn bản khá dài để kiểm tra chiều dài dòng
+email của tôi là phong123@gmail.com
+email khác là sinhvien@ctu.edu.vn
+trong <head>đây là nội dung phần đầu</head> của tài liệu
+hãy nhớ rằng học tập là quan trọng
+một số dòng văn bản re có chứa từ khóa
+đôi khi chúng ta cần kiểm tra biểu thức chính quy?!
+đây là dòng không chứa từ chuột
+tôi đang thử nghiệm abcdef
+định dạng ngày 14-11-2025 xuất hiện ở đây
+định dạng khác 15-11-2025 cũng nằm trong văn bản

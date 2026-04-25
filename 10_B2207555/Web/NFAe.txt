@@ -1,0 +1,31 @@
+states: q0,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19
+alphabet: 0,1
+start: q0
+accept: q19
+transitions:
+q0,eps,q1
+q0,0,q2
+q0,1,q3
+q1,0,q4
+q1,eps,q5
+q2,1,q6
+q2,eps,q7
+q3,0,q8
+q3,1,q9
+q4,eps,q10
+q5,1,q11
+q6,eps,q12
+q7,0,q13
+q8,1,q14
+q9,eps,q15
+q10,0,q16
+q11,1,q17
+q12,eps,q18
+q13,1,q19
+q14,0,q19
+q15,eps,q19
+q16,0,q16
+q17,1,q17
+q18,0,q18
+q19,0,q19
+q19,1,q19

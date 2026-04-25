@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lý Thuyết – Tin Học Lý Thuyết</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Homebtn.css">
+  <style>
+    body {
+      font-family:'Roboto',sans-serif;
+      margin:0;
+      padding:0;
+      background: #eef6ff;
+    }
+    header{
+      background:#1766a6;
+      color:white;
+      padding:20px;
+      text-align:center;
+      font-size:26px;
+      font-weight:500;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      font-family:"K2D";
+    }
+    main{
+      display:grid;
+      grid-template-columns: repeat(3, 260px);
+      justify-content:center;
+      row-gap:20px;
+      column-gap:20px;
+      padding:20px;
+    }
+    .card{
+      background:white;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.12);
+      padding:20px;
+      text-align:center;
+      transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow:0 12px 24px rgba(0,0,0,0.2);
+    }
+    .card h2{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#1766a6;
+    }
+    .card p{
+      font-size:14px;
+      color:#555;
+      margin-bottom:15px;
+    }
+
+    .download-btn {
+      padding:10px 18px;
+      background:#1766a6;
+      color:white;
+      font-size:14px;
+      text-decoration:none;
+      border-radius:6px;
+      display:inline-block;
+      transition: background 0.2s;
+      cursor:pointer;
+    }
+    .download-btn:hover{
+      background:#0e4a78;
+    }
+
+  footer {
+    background-color: #145a86;
+    color: #ecf0f1;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 20px 0;
+    position: relative;
+  }
+  footer{
+      text-align:center;
+      font-family: "K2D";
+      font-size:15px;
+      margin-top:50px;
+    }
+
+  footer span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+    body::before {
+      content: "CTU";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: 550px;
+      color: rgba(0,0,0,0.05);
+      font-weight: bold;
+      z-index: 0;
+      pointer-events: none;
+    }
+    header, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+<a href="index.html" class="btn-home">Home</a>
+<header>
+  LÝ THUYẾT – MÔN TIN HỌC LÝ THUYẾT
+</header>
+
+<main>
+  <!-- Chương 1 -->
+  <div class="card">
+    <h2>Chương 1</h2>
+    <p>Giới thiệu & các khái niệm nền tảng.</p>
+    <button class="download-btn" onclick="downloadFiles(1)">Tải xuống</button>
+  </div>
+
+  <!-- Chương 2 -->
+  <div class="card">
+    <h2>Chương 2</h2>
+    <p>Ngôn ngữ hình thức & văn phạm.</p>
+    <button class="download-btn" onclick="downloadFiles(2)">Tải xuống</button>
+  </div>
+
+  <!-- Chương 3 -->
+  <div class="card">
+    <h2>Chương 3</h2>
+    <p>Ôtômat hữu hạn & nhận dạng chuỗi.</p>
+    <button class="download-btn" onclick="downloadFiles(3)">Tải xuống</button>
+  </div>
+
+  <!-- Chương 4 -->
+  <div class="card">
+    <h2>Chương 4</h2>
+    <p>Pushdown Automata & văn phạm phi ngữ cảnh.</p>
+    <button class="download-btn" onclick="downloadFiles(4)">Tải xuống</button>
+  </div>
+
+  <!-- Chương 5 -->
+  <div class="card">
+    <h2>Chương 5</h2>
+    <p>Turing Machine & khả năng tính toán.</p>
+    <button class="download-btn" onclick="downloadFiles(5)">Tải xuống</button>
+  </div>
+    <!-- Chương 6 -->
+  <div class="card">
+    <h2>Chương 6</h2>
+    <p>Turing Machine & khả năng tính toán.</p>
+    <button class="download-btn" onclick="downloadFiles(6)">Tải xuống</button>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-left">Trường công nghệ thông tin và truyền thông - Đại học Cần Thơ</div>
+  <div class="footer-right">Hệ thống hỗ trợ học tập trực tuyến</div>
+</footer>
+
+<script>
+  function downloadFiles(chapter) {
+    const fileList = {
+      1: [
+        "files/chuong1_slide.pdf",
+        "files/chuong1_baitap.docx",
+        "files/chuong1_video.mp4"
+      ],
+      2: [
+        "files/chuong2_slide.pdf",
+        "files/chuong2_baitap.docx"
+      ],
+      3: [
+        "./TaiLieu/THLT_btchap3_1.pdf",
+        "./TaiLieu/BaiTapChuong03.pdf"
+      ],
+      4: [
+        "./TaiLieu/THLT_btchap4_1.pdf",
+        "./TaiLieu/BaiTapChuong04.pdf"
+      ],
+      5: [
+        "./TaiLieu/THLT_btchap5_1.pdf",
+        "./TaiLieu/BaiTapChuong05.pdf"
+      ],
+      6: [
+        "files/chuong5_turing.pdf",
+        "files/chuong5_on_tap.docx"
+      ]
+    };
+
+    const files = fileList[chapter];
+    if (!files) return alert("Không có file trong chương này!");
+
+    files.forEach(f => {
+      const a = document.createElement("a");
+      a.href = f;
+      a.download = f.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+
+    alert("Đang tải " + files.length + " file của Chương " + chapter);
+  }
+</script>
+
+</body>
+</html>

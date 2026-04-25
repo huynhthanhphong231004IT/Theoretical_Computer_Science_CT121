@@ -1,0 +1,23 @@
+    .btn-home {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      background-color: #d23f3f; 
+      border: 2px solid #a32b2b; 
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(210,63,63,0.3);
+      transition: all 0.2s ease;
+      z-index: 1000; 
+    }
+
+
+    .btn-home:hover {
+      background-color: #a32b2b;
+      border-color: #7f1f1f;
+      box-shadow: 0 6px 12px rgba(210,63,63,0.5);
+    }
