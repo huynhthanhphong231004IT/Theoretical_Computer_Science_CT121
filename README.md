@@ -106,12 +106,32 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    P["Thực trạng<br/>học qua hình tĩnh, giải tay"] --> G1["Khoảng trống 1<br/>khó kiểm chứng phép chuyển đổi"]
-    P --> G2["Khoảng trống 2<br/>lý thuyết, bài tập, công cụ tách rời"]
-    P --> G3["Khoảng trống 3<br/>cần cài đặt, khó dùng tại lớp"]
-    G1 --> S1["Hiển thị ε-closure và<br/>tập con từng bước"]
-    G2 --> S2["Một trang web: lý thuyết,<br/>bài tập, kiểm tra, chuyển đổi"]
-    G3 --> S3["Chạy trên trình duyệt,<br/>triển khai GitHub Pages"]
+    %% Định nghĩa phong cách màu sắc chuẩn Academic (Nhiều màu, chuyên nghiệp)
+    classDef problem fill:#FFEBEE,stroke:#C62828,stroke-width:1.5px,color:#B71C1C,font-weight:bold;
+    classDef gap1 fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100;
+    classDef gap2 fill:#FFFDE7,stroke:#FBC02D,stroke-width:1.5px,color:#F57F17;
+    classDef gap3 fill:#F3E5F5,stroke:#7B1FA2,stroke-width:1.5px,color:#4A148C;
+    classDef solution fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20,font-weight:bold;
+
+    %% Các nút trong sơ đồ (đã ngắt dòng chủ động tránh xén chữ)
+    P["Thực trạng:<br/>học qua hình tĩnh, giải tay"]:::problem
+    
+    G1["Khoảng trống 1:<br/>khó kiểm chứng phép chuyển đổi"]:::gap1
+    G2["Khoảng trống 2:<br/>lý thuyết, bài tập, công cụ tách rời"]:::gap2
+    G3["Khoảng trống 3:<br/>cần cài đặt, khó dùng tại lớp"]:::gap3
+    
+    S1["Hiển thị ε-closure và<br/>tập con từng bước"]:::solution
+    S2["Một trang web:<br/>lý thuyết, bài tập, kiểm tra, chuyển đổi"]:::solution
+    S3["Chạy trên trình duyệt,<br/>triển khai GitHub Pages"]:::solution
+
+    %% Luồng liên kết
+    P --> G1
+    P --> G2
+    P --> G3
+    
+    G1 --> S1
+    G2 --> S2
+    G3 --> S3
 ```
 
 **Từ thuật toán đến mô-đun.** Mỗi phép biến đổi lý thuyết được cài đặt thành một mô-đun JavaScript riêng, dùng chung một định dạng dữ liệu (trạng thái, bảng chữ cái, trạng thái đầu, trạng thái kết, bảng chuyển) để kết quả của mô-đun này làm đầu vào cho mô-đun kia.
@@ -127,14 +147,41 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-    S["Tập trạng thái bắt đầu<br/>ε-closure của q0"] --> W{"Còn tập con<br/>chưa xét?"}
-    W -->|Có| M["Với mỗi ký tự a:<br/>T = ε-closure của move(S, a)"]
-    M --> N{"T đã có<br/>trong DFA?"}
-    N -->|Chưa| ADD["Thêm T làm trạng thái mới"]
+    %% Định nghĩa phong cách màu sắc chuẩn Academic (Nhiều màu, chuyên nghiệp)
+    classDef startNode fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1,font-weight:bold;
+    classDef decisionNode fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
+    classDef processNode fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20;
+    classDef addNode fill:#F3E5F5,stroke:#7B1FA2,stroke-width:1.5px,color:#4A148C;
+    classDef endNode fill:#FFEBEE,stroke:#C62828,stroke-width:1.5px,color:#B71C1C,font-weight:bold;
+
+    %% Các nút trong sơ đồ (đã ngắt dòng chủ động tránh xén chữ)
+    S["Tập trạng thái bắt đầu<br/>ε-closure của q0"]:::startNode
+    
+    W{"Còn tập con<br/>chưa xét?"}:::decisionNode
+    
+    M["Với mỗi ký tự a:<br/>T = ε-closure của move(S, a)"]:::processNode
+    
+    N{"T đã có<br/>trong DFA?"}:::decisionNode
+    
+    ADD["Thêm T làm<br/>trạng thái mới"]:::addNode
+    
+    LINK["Vẽ cạnh S → T<br/>với nhãn a"]:::processNode
+    
+    F["Trạng thái kết: tập con<br/>chứa ít nhất một trạng thái<br/>kết của NFA"]:::endNode
+
+    %% Luồng liên kết
+    S --> W
+    
+    W -->|Có| M
+    M --> N
+    
+    N -->|Chưa| ADD
     N -->|Rồi| LINK
-    ADD --> LINK["Vẽ cạnh S → T nhãn a"]
+    
+    ADD --> LINK
     LINK --> W
-    W -->|Không| F["Trạng thái kết: tập con<br/>chứa ít nhất một trạng thái kết của NFA"]
+    
+    W -->|Không| F
 ```
 
 Số trạng thái của DFA thu được có thể lên tới 2ⁿ so với NFA gồm n trạng thái, đây cũng là giới hạn hiệu năng chính của một công cụ chạy hoàn toàn trên trình duyệt.
@@ -149,6 +196,26 @@ accept: q2
 transitions:
 q0, a, q1
 q1, b, q2
+```
+
+```mermaid
+flowchart LR
+    %% Định nghĩa phong cách màu sắc chuẩn Academic
+    classDef startState fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1,font-weight:bold;
+    classDef normalState fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
+    classDef acceptState fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20,font-weight:bold;
+
+    %% Điểm bắt đầu ảo để chỉ định trạng thái start (q0)
+    direction LR
+    
+    %% Các nút trạng thái (q2 là trạng thái kết/chấp nhận)
+    q0["Trạng thái bắt đầu<br/>q0"]:::startState
+    q1["Trạng thái trung gian<br/>q1"]:::normalState
+    q2["Trạng thái chấp nhận<br/>q2"]:::acceptState
+
+    %% Các chuyển đổi (Transitions)
+    q0 -->|a| q1
+    q1 -->|b| q2
 ```
 
 Đồ thị dùng bảng màu cố định để người học nhận ra vai trò trạng thái ngay: **xanh lá** là trạng thái bắt đầu, **đỏ** là trạng thái kết, **xanh dương** là trạng thái còn lại.
