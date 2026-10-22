@@ -60,7 +60,13 @@ flowchart LR
     E --> F
 ```
 
-**Cấu trúc kho lưu trữ**
+## 1. Tổng quan 
+
+<div align="center">
+<p align="center">
+  <i>Bảng 1: Cấu trúc chi tiết các thư mục và tệp tin trong kho lưu trữ.</i>
+</p>
+</div>
 
 | Thư mục / tệp | Nội dung | Vai trò |
 |---|---|---|
@@ -78,8 +84,21 @@ Ba mô hình DFA, NFA và NFA-ε có sức mạnh nhận dạng như nhau: cả 
 
 ```mermaid
 flowchart LR
-    NE["NFA-ε<br/>δ: Q × (Σ ∪ ε) → 2^Q"] -->|"ε-closure"| N["NFA<br/>δ: Q × Σ → 2^Q"]
-    N -->|"subset construction"| D["DFA<br/>δ: Q × Σ → Q"]
+    %% Định nghĩa phong cách màu sắc chuẩn Academic (Nhiều màu, chuyên nghiệp)
+    classDef neNode fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1,font-weight:bold;
+    classDef nNode fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
+    classDef dNode fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20,font-weight:bold;
+
+    %% Các nút trong sơ đồ (đã ngắt dòng chủ động tránh xén chữ)
+    NE["NFA-ε<br/>δ: Q × (Σ ∪ ε) → 2^Q"]:::neNode
+    
+    N["NFA<br/>δ: Q × Σ → 2^Q"]:::nNode
+    
+    D["DFA<br/>δ: Q × Σ → Q"]:::dNode
+
+    %% Luồng liên kết và chú thích chuyển đổi
+    NE -->|"ε-closure"| N
+    N -->|"subset construction"| D
     NE -->|"ε-closure + subset construction"| D
 ```
 
