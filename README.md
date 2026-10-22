@@ -200,22 +200,26 @@ q1, b, q2
 
 ```mermaid
 flowchart LR
-    %% Định nghĩa phong cách màu sắc chuẩn Academic
-    classDef startState fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1,font-weight:bold;
-    classDef normalState fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
-    classDef acceptState fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20,font-weight:bold;
+    %% Định nghĩa phong cách chuẩn Academic cho đồ thị trạng thái
+    classDef startState fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1,font-weight:bold;
+    classDef normalState fill:#FFF3E0,stroke:#EF6C00,stroke-width:2px,color:#E65100,font-weight:bold;
+    classDef acceptState fill:#E8F5E9,stroke:#2E7D32,stroke-width:3px,color:#1B5E20,font-weight:bold;
+    classDef hidden fill:none,stroke:none;
 
-    %% Điểm bắt đầu ảo để chỉ định trạng thái start (q0)
-    direction LR
-    
-    %% Các nút trạng thái (q2 là trạng thái kết/chấp nhận)
-    q0["Trạng thái bắt đầu<br/>q0"]:::startState
-    q1["Trạng thái trung gian<br/>q1"]:::normalState
-    q2["Trạng thái chấp nhận<br/>q2"]:::acceptState
+    %% Điểm khởi đầu mũi tên chỉ trạng thái bắt đầu
+    Start([ ]) --> q0
+
+    %% Các trạng thái dạng hình tròn (( ))
+    q0((q0)):::startState
+    q1((q1)):::normalState
+    q2((q2)):::acceptState
 
     %% Các chuyển đổi (Transitions)
     q0 -->|a| q1
     q1 -->|b| q2
+
+    %% Ẩn node khởi đầu
+    Start:::hidden
 ```
 
 Đồ thị dùng bảng màu cố định để người học nhận ra vai trò trạng thái ngay: **xanh lá** là trạng thái bắt đầu, **đỏ** là trạng thái kết, **xanh dương** là trạng thái còn lại.
