@@ -61,13 +61,6 @@ flowchart LR
 ```
 
 ## 1. Tổng quan 
-
-<div align="center">
-<p align="center">
-  <i>Bảng 1: Cấu trúc chi tiết các thư mục và tệp tin trong kho lưu trữ.</i>
-</p>
-</div>
-
 | Thư mục / tệp | Nội dung | Vai trò |
 |---|---|---|
 | `10_B2207555/Web/` | Website (HTML, CSS, JS thuần + vis-network) | Sản phẩm chính |
