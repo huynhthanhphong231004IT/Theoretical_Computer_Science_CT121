@@ -19,7 +19,7 @@ Giáo viên hướng dẫn: ThS. Phạm Xuân Hiền
 </div>
 
 ---
-# Kết quả sản phẩm
+# Kết quả sản phẩm [![DFA.txt](https://img.shields.io/badge/DFA-TXT-f39c12?style=for-the-badge)](10_B2207555/Web/DFA.txt)
 
 <p align="center">
   <img src="Images/image_01.jpg" width="800">
