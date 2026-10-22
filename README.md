@@ -2,9 +2,16 @@
 
 # Website tương tác giải bài tập Automata
 
-**CT121 – Tin học lý thuyết · Trường CNTT&TT, Đại học Cần Thơ · HKI 2025–2026**
+**CT121 – Tin học lý thuyết - Trường CNTT&TT, Đại học Cần Thơ - HKI 2025–2026**
 
-Huỳnh Thanh Phong (B2207555 · STT 10) · GVHD: ThS. Phạm Xuân Hiền
+Sinh viên thực hiện: Huỳnh Thanh Phong (MSSV: B2207555 - Số thứ tự nhóm 10)  
+Giáo viên hướng dẫn: ThS. Phạm Xuân Hiền
+
+**Facbook**: https://www.facebook.com/huynh.thanh.phong.561667 
+
+**Tiktok**: https://www.tiktok.com/@reorioll
+
+**Youtobe**: https://www.youtube.com/@ReoRioll-2304CICTCTU
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-1766a6?style=for-the-badge)](https://huynhthanhphong231004it.github.io/Theoretical_Computer_Science_CT121/10_B2207555/Web/)
 [![Báo cáo](https://img.shields.io/badge/Báo%20cáo-PDF-e74c3c?style=for-the-badge)](10_B2207555/THLT_Bao_Cao_final.pdf)
@@ -15,18 +22,42 @@ Huỳnh Thanh Phong (B2207555 · STT 10) · GVHD: ThS. Phạm Xuân Hiền
 
 ## 1. Tóm tắt
 
-Ôtômát hữu hạn (DFA, NFA, NFA-ε) là nền tảng của ngôn ngữ hình thức và trình biên dịch, nhưng người học thường chỉ tiếp cận chúng qua hình vẽ tĩnh trên bảng và phép biến đổi làm tay, nơi một sai sót nhỏ trong tập trạng thái cũng làm hỏng toàn bộ lời giải. Đồ án xây dựng một **website tương tác** cho phép nhập ôtômát, chạy từng bước một chuỗi đầu vào trên đồ thị trạng thái, và thực hiện tự động các phép chuyển đổi *NFA → DFA*, *NFA-ε → NFA* và *NFA-ε → DFA*, qua đó người học đối chiếu lời giải của mình với kết quả của thuật toán ngay lập tức. Kho lưu trữ này gồm sản phẩm web, báo cáo đồ án và bốn bài thực hành Python làm nền cho phần cài đặt.
+> Ôtômát hữu hạn (DFA, NFA, NFA-ε) là nền tảng của ngôn ngữ hình thức và trình biên dịch, nhưng người học thường chỉ tiếp cận chúng qua hình vẽ tĩnh trên bảng và phép biến đổi làm tay, nơi một sai sót nhỏ trong tập trạng thái cũng làm hỏng toàn bộ lời giải. Đồ án xây dựng một website tương tác cho phép nhập ôtômát, chạy từng bước một chuỗi đầu vào trên đồ thị trạng thái, và thực hiện tự động các phép chuyển đổi *NFA → DFA*, *NFA-ε → NFA* và *NFA-ε → DFA*, qua đó người học đối chiếu lời giải của mình với kết quả của thuật toán ngay lập tức. Kho lưu trữ này gồm sản phẩm web, báo cáo đồ án và bốn bài thực hành Python làm nền cho phần cài đặt.
 
 **Từ khóa:** DFA · NFA · NFA-ε · subset construction · ε-closure · trực quan hóa thuật toán
 
 ```mermaid
 flowchart LR
-    A["Nhập ôtômát<br/>form hoặc file .txt"] --> B{"Chức năng"}
-    B --> C["Kiểm tra chuỗi<br/>từng bước chuyển"]
-    B --> D["Chuyển đổi<br/>NFA-ε → NFA → DFA"]
-    C --> E["Đồ thị trạng thái<br/>vis-network"]
+    %% Định nghĩa phong cách màu sắc chuẩn Academic (Nhiều màu, chuyên nghiệp)
+    classDef input fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1,font-weight:bold;
+    classDef decision fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
+    classDef process1 fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20;
+    classDef process2 fill:#F3E5F5,stroke:#7B1FA2,stroke-width:1.5px,color:#4A148C;
+    classDef graphNode fill:#E0F7FA,stroke:#00838F,stroke-width:1.5px,color:#006064;
+    classDef output fill:#FFEBEE,stroke:#C62828,stroke-width:1.5px,color:#B71C1C;
+
+    %% Các nút trong sơ đồ (đã ngắt dòng chủ động)
+    A["Nhập ôtômát<br/>form hoặc file .txt"]:::input
+    
+    B{"Chức năng"}:::decision
+    
+    C["Kiểm tra chuỗi<br/>từng bước chuyển"]:::process1
+    D["Chuyển đổi<br/>NFA-ε → NFA → DFA"]:::process2
+    
+    E["Đồ thị trạng thái<br/>vis-network"]:::graphNode
+    
+    F["Đối chiếu với<br/>bài giải tay"]:::output
+
+    %% Luồng liên kết dữ liệu
+    A --> B
+    
+    B -->|Kiểm tra| C
+    B -->|Chuyển đổi| D
+    
+    C --> E
     D --> E
-    E --> F["Đối chiếu với<br/>bài giải tay"]
+    
+    E --> F
 ```
 
 **Cấu trúc kho lưu trữ**
