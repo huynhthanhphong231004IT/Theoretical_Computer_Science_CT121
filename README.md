@@ -188,16 +188,6 @@ Số trạng thái của DFA thu được có thể lên tới 2ⁿ so với NFA
 
 Dữ liệu ôtômát nhập từ file `.txt` có dạng khóa–giá trị, mỗi cạnh chuyển là một dòng `nguồn, ký hiệu, đích`:
 
-```text
-states: q0, q1, q2
-alphabet: a, b
-start: q0
-accept: q2
-transitions:
-q0, a, q1
-q1, b, q2
-```
-
 ```mermaid
 flowchart LR
     %% Định nghĩa phong cách chuẩn Academic cho đồ thị trạng thái
@@ -220,6 +210,16 @@ flowchart LR
 
     %% Ẩn node khởi đầu
     Start:::hidden
+```
+
+```text
+states: q0, q1, q2
+alphabet: a, b
+start: q0
+accept: q2
+transitions:
+q0, a, q1
+q1, b, q2
 ```
 
 Đồ thị dùng bảng màu cố định để người học nhận ra vai trò trạng thái ngay: **xanh lá** là trạng thái bắt đầu, **đỏ** là trạng thái kết, **xanh dương** là trạng thái còn lại.
