@@ -10,11 +10,11 @@
 Sinh viên thực hiện: Huỳnh Thanh Phong (MSSV: B2207555 - Số thứ tự nhóm 10)  
 Giáo viên hướng dẫn: ThS. Phạm Xuân Hiền
 
-**Facbook**: https://www.facebook.com/huynh.thanh.phong.561667 
+[![Facebook](https://img.shields.io/badge/Facebook-Huỳnh%20Thanh%20Phong-E53935?style=for-the-badge&logo=facebook&logoColor=white&labelColor=333333)](https://www.facebook.com/huynh.thanh.phong.561667)
+[![TikTok](https://img.shields.io/badge/TikTok-@reorioll-E53935?style=for-the-badge&logo=tiktok&logoColor=white&labelColor=333333)](https://www.tiktok.com/@reorioll)
+[![YouTube](https://img.shields.io/badge/YouTube-ReoRioll-E53935?style=for-the-badge&logo=youtube&logoColor=white&labelColor=333333)](https://www.youtube.com/@ReoRioll-2304CICTCTU)
 
-**Tiktok**: https://www.tiktok.com/@reorioll
 
-**Youtobe**: https://www.youtube.com/@ReoRioll-2304CICTCTU
 </div>
 
 ---
