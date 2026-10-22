@@ -19,6 +19,25 @@ Giáo viên hướng dẫn: ThS. Phạm Xuân Hiền
 </div>
 
 ---
+# Kết quả sản phẩm
+
+<p align="center">
+  <img src="Images/image_01.jpg" width="800">
+  <img src="Images/image_02.jpg" width="800">
+  <img src="Images/image_03.jpg" width="800">
+  <br>
+  <i>Giao diện mô phỏng quá trình sinh đồ thị và kiểm tra chuỗi trạng thái</i>
+</p>
+
+<p align="center">
+  <img src="Images/image_04.jpg" width="800">
+  <img src="Images/image_05.jpg" width="800">
+  <br>
+  <i>Giao diện cung cấp các phần lý thuyết tự luận do chính tác giả giải tay</i>
+</p>
+
+
+---
 
 ## 1. Tóm tắt
 
