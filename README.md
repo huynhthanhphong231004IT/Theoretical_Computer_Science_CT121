@@ -3,6 +3,7 @@
 # Website tương tác giải bài tập Automata
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-1766a6?style=for-the-badge)](https://huynhthanhphong231004it.github.io/Theoretical_Computer_Science_CT121/10_B2207555/Web/)
 [![Báo cáo](https://img.shields.io/badge/Báo%20cáo-PDF-e74c3c?style=for-the-badge)](10_B2207555/THLT_Bao_Cao_final.pdf)
+[![Slide Báo cáo](https://img.shields.io/badge/Slide-PPTX-D24726?style=for-the-badge)](10_B2207555/BaoCaoProject.pptx)
 
 **CT121 – Tin học lý thuyết - Trường CNTT&TT, Đại học Cần Thơ - HKI 2025–2026**
 
