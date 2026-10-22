@@ -202,88 +202,23 @@ q1, b, q2
 flowchart LR
     %% Định nghĩa phong cách chuẩn Academic cho đồ thị trạng thái
     classDef startState fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1,font-weight:bold;
-    classDef normalState fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
+    classDef normalState fill:#FFF3E0,stroke:#EF6C00,stroke-width:2px,color:#E65100,font-weight:bold;
     classDef acceptState fill:#E8F5E9,stroke:#2E7D32,stroke-width:3px,color:#1B5E20,font-weight:bold;
     classDef hidden fill:none,stroke:none;
 
-    %% Điểm khởi đầu chỉ định trạng thái bắt đầu
+    %% Điểm khởi đầu mũi tên chỉ trạng thái bắt đầu
     Start([ ]) --> q0
 
-    %% Các trạng thái (q5, q9, q14, q17 là trạng thái chấp nhận - vòng tròn đậm)
+    %% Các trạng thái dạng hình tròn (( ))
     q0((q0)):::startState
     q1((q1)):::normalState
-    q2((q2)):::normalState
-    q3((q3)):::normalState
-    q4((q4)):::normalState
-    q5((q5)):::acceptState
-    q6((q6)):::normalState
-    q7((q7)):::normalState
-    q8((q8)):::normalState
-    q9((q9)):::acceptState
-    q10((q10)):::normalState
-    q11((q11)):::normalState
-    q12((q12)):::normalState
-    q13((q13)):::normalState
-    q14((q14)):::acceptState
-    q15((q15)):::normalState
-    q16((q16)):::normalState
-    q17((q17)):::acceptState
+    q2((q2)):::acceptState
 
-    %% Các chuyển đổi (Transitions) theo đúng danh sách
-    q0 -->|0| q1
-    q0 -->|1| q2
+    %% Các chuyển đổi (Transitions)
+    q0 -->|a| q1
+    q1 -->|b| q2
 
-    q1 -->|0| q3
-    q1 -->|1| q4
-
-    q2 -->|0| q5
-    q2 -->|1| q6
-
-    q3 -->|0| q7
-    q3 -->|1| q8
-
-    q4 -->|0| q9
-    q4 -->|1| q10
-
-    q5 -->|0| q11
-    q5 -->|1| q12
-
-    q6 -->|0| q13
-    q6 -->|1| q14
-
-    q7 -->|0| q15
-    q7 -->|1| q16
-
-    q8 -->|0| q17
-    q8 -->|1| q0
-
-    q9 -->|0| q9
-    q9 -->|1| q17
-
-    q10 -->|0| q2
-    q10 -->|1| q3
-
-    q11 -->|0| q4
-    q11 -->|1| q5
-
-    q12 -->|0| q6
-    q12 -->|1| q7
-
-    q13 -->|0| q8
-    q13 -->|1| q9
-
-    q14 -->|0| q10
-    q14 -->|1| q11
-
-    q15 -->|0| q12
-    q15 -->|1| q13
-
-    q16 -->|0| q14
-    q16 -->|1| q15
-
-    q17 -->|0| q16
-    q17 -->|1| q17
-
+    %% Ẩn node khởi đầu
     Start:::hidden
 ```
 
@@ -293,10 +228,29 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    L1["Lab01<br/>Xử lý chuỗi<br/>Python"] --> L2["Lab02<br/>Lớp DFA, NFA"]
-    L2 --> L3["Lab03<br/>Biểu thức chính quy"]
-    L3 --> L4["Lab04<br/>Văn phạm tuyến tính<br/>và bài tổng hợp"]
-    L4 --> W["Đồ án web<br/>JavaScript"]
+    %% Định nghĩa phong cách màu sắc chuẩn Academic (Nhiều màu, chuyên nghiệp)
+    classDef lab1 fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1,font-weight:bold;
+    classDef lab2 fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
+    classDef lab3 fill:#FFFDE7,stroke:#FBC02D,stroke-width:1.5px,color:#F57F17,font-weight:bold;
+    classDef lab4 fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20,font-weight:bold;
+    classDef webProject fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C,font-weight:bold;
+
+    %% Các nút trong sơ đồ (đã ngắt dòng chủ động tránh xén chữ)
+    L1["Lab 01<br/>Xử lý chuỗi<br/>Python"]:::lab1
+    
+    L2["Lab 02<br/>Lớp DFA, NFA"]:::lab2
+    
+    L3["Lab 03<br/>Biểu thức chính quy"]:::lab3
+    
+    L4["Lab 04<br/>Văn phạm tuyến tính<br/>và bài tổng hợp"]:::lab4
+    
+    W["Đồ án Web<br/>JavaScript & vis-network"]:::webProject
+
+    %% Luồng liên kết tiến trình
+    L1 --> L2
+    L2 --> L3
+    L3 --> L4
+    L4 --> W
 ```
 
 ---
@@ -316,10 +270,28 @@ Hệ thống hiện còn một số giới hạn do báo cáo tự đánh giá: 
 
 ```mermaid
 flowchart LR
-    NOW["Hiện tại<br/>DFA · NFA · NFA-ε"] --> A["Sinh bài tập tự động<br/>theo mức độ"]
-    NOW --> B["Thống kê tiến độ<br/>và lưu kết quả"]
-    NOW --> C["Tối ưu hiệu năng<br/>và giao diện di động"]
-    A --> NEXT["Mô hình nâng cao<br/>PDA · Máy Turing"]
+    %% Định nghĩa phong cách màu sắc chuẩn Academic (Nhiều màu, chuyên nghiệp)
+    classDef current fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1,font-weight:bold;
+    classDef featureA fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100;
+    classDef featureB fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20;
+    classDef featureC fill:#F3E5F5,stroke:#7B1FA2,stroke-width:1.5px,color:#4A148C;
+    classDef nextNode fill:#FFEBEE,stroke:#C62828,stroke-width:2px,color:#B71C1C,font-weight:bold;
+
+    %% Các nút trong sơ đồ (đã ngắt dòng chủ động tránh xén chữ)
+    NOW["Hiện tại:<br/>DFA · NFA · NFA-ε"]:::current
+    
+    A["Sinh bài tập tự động<br/>theo mức độ"]:::featureA
+    B["Thống kê tiến độ<br/>và lưu kết quả"]:::featureB
+    C["Tối ưu hiệu năng<br/>và giao diện di động"]:::featureC
+    
+    NEXT["Mô hình nâng cao:<br/>PDA · Máy Turing"]:::nextNode
+
+    %% Luồng liên kết định hướng phát triển
+    NOW --> A
+    NOW --> B
+    NOW --> C
+    
+    A --> NEXT
     B --> NEXT
     C --> NEXT
 ```
