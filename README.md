@@ -29,6 +29,8 @@ Giáo viên hướng dẫn: ThS. Phạm Xuân Hiền
   <i>Hình 01. Giao diện mô phỏng quá trình sinh đồ thị và kiểm tra chuỗi trạng thái</i>
 </p>
 
+ ---
+
 <p align="center">
   <img src="Images/image_04.jpg" width="800">
   <img src="Images/image_05.jpg" width="800">
