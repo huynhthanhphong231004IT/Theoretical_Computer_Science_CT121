@@ -26,14 +26,14 @@ Giáo viên hướng dẫn: ThS. Phạm Xuân Hiền
   <img src="Images/image_02.jpg" width="800">
   <img src="Images/image_03.jpg" width="800">
   <br>
-  <i>Giao diện mô phỏng quá trình sinh đồ thị và kiểm tra chuỗi trạng thái</i>
+  <i>Hình 01. Giao diện mô phỏng quá trình sinh đồ thị và kiểm tra chuỗi trạng thái</i>
 </p>
 
 <p align="center">
   <img src="Images/image_04.jpg" width="800">
   <img src="Images/image_05.jpg" width="800">
   <br>
-  <i>Giao diện cung cấp các phần lý thuyết tự luận do chính tác giả giải tay</i>
+  <i>Hình 02. Giao diện cung cấp các phần lý thuyết tự luận do chính tác giả giải tay</i>
 </p>
 
 
