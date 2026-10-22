@@ -202,23 +202,88 @@ q1, b, q2
 flowchart LR
     %% Định nghĩa phong cách chuẩn Academic cho đồ thị trạng thái
     classDef startState fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1,font-weight:bold;
-    classDef normalState fill:#FFF3E0,stroke:#EF6C00,stroke-width:2px,color:#E65100,font-weight:bold;
+    classDef normalState fill:#FFF3E0,stroke:#EF6C00,stroke-width:1.5px,color:#E65100,font-weight:bold;
     classDef acceptState fill:#E8F5E9,stroke:#2E7D32,stroke-width:3px,color:#1B5E20,font-weight:bold;
     classDef hidden fill:none,stroke:none;
 
-    %% Điểm khởi đầu mũi tên chỉ trạng thái bắt đầu
+    %% Điểm khởi đầu chỉ định trạng thái bắt đầu
     Start([ ]) --> q0
 
-    %% Các trạng thái dạng hình tròn (( ))
+    %% Các trạng thái (q5, q9, q14, q17 là trạng thái chấp nhận - vòng tròn đậm)
     q0((q0)):::startState
     q1((q1)):::normalState
-    q2((q2)):::acceptState
+    q2((q2)):::normalState
+    q3((q3)):::normalState
+    q4((q4)):::normalState
+    q5((q5)):::acceptState
+    q6((q6)):::normalState
+    q7((q7)):::normalState
+    q8((q8)):::normalState
+    q9((q9)):::acceptState
+    q10((q10)):::normalState
+    q11((q11)):::normalState
+    q12((q12)):::normalState
+    q13((q13)):::normalState
+    q14((q14)):::acceptState
+    q15((q15)):::normalState
+    q16((q16)):::normalState
+    q17((q17)):::acceptState
 
-    %% Các chuyển đổi (Transitions)
-    q0 -->|a| q1
-    q1 -->|b| q2
+    %% Các chuyển đổi (Transitions) theo đúng danh sách
+    q0 -->|0| q1
+    q0 -->|1| q2
 
-    %% Ẩn node khởi đầu
+    q1 -->|0| q3
+    q1 -->|1| q4
+
+    q2 -->|0| q5
+    q2 -->|1| q6
+
+    q3 -->|0| q7
+    q3 -->|1| q8
+
+    q4 -->|0| q9
+    q4 -->|1| q10
+
+    q5 -->|0| q11
+    q5 -->|1| q12
+
+    q6 -->|0| q13
+    q6 -->|1| q14
+
+    q7 -->|0| q15
+    q7 -->|1| q16
+
+    q8 -->|0| q17
+    q8 -->|1| q0
+
+    q9 -->|0| q9
+    q9 -->|1| q17
+
+    q10 -->|0| q2
+    q10 -->|1| q3
+
+    q11 -->|0| q4
+    q11 -->|1| q5
+
+    q12 -->|0| q6
+    q12 -->|1| q7
+
+    q13 -->|0| q8
+    q13 -->|1| q9
+
+    q14 -->|0| q10
+    q14 -->|1| q11
+
+    q15 -->|0| q12
+    q15 -->|1| q13
+
+    q16 -->|0| q14
+    q16 -->|1| q15
+
+    q17 -->|0| q16
+    q17 -->|1| q17
+
     Start:::hidden
 ```
 
